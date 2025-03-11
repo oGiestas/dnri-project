@@ -1,0 +1,83 @@
+Using learned recurrent interaction net decoder.
+dNRI MODEL:  DNRI(
+  (encoder): DNRI_Encoder(
+    (mlp1): RefNRIMLP(
+      (model): Sequential(
+        (0): Linear(in_features=4, out_features=256, bias=True)
+        (1): ELU(alpha=1.0, inplace=True)
+        (2): Dropout(p=0.0, inplace=False)
+        (3): Linear(in_features=256, out_features=256, bias=True)
+        (4): ELU(alpha=1.0, inplace=True)
+      )
+      (bn): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+    (mlp2): RefNRIMLP(
+      (model): Sequential(
+        (0): Linear(in_features=512, out_features=256, bias=True)
+        (1): ELU(alpha=1.0, inplace=True)
+        (2): Dropout(p=0.0, inplace=False)
+        (3): Linear(in_features=256, out_features=256, bias=True)
+        (4): ELU(alpha=1.0, inplace=True)
+      )
+      (bn): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+    (mlp3): RefNRIMLP(
+      (model): Sequential(
+        (0): Linear(in_features=256, out_features=256, bias=True)
+        (1): ELU(alpha=1.0, inplace=True)
+        (2): Dropout(p=0.0, inplace=False)
+        (3): Linear(in_features=256, out_features=256, bias=True)
+        (4): ELU(alpha=1.0, inplace=True)
+      )
+      (bn): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+    (mlp4): RefNRIMLP(
+      (model): Sequential(
+        (0): Linear(in_features=768, out_features=256, bias=True)
+        (1): ELU(alpha=1.0, inplace=True)
+        (2): Dropout(p=0.0, inplace=False)
+        (3): Linear(in_features=256, out_features=256, bias=True)
+        (4): ELU(alpha=1.0, inplace=True)
+      )
+      (bn): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+    (forward_rnn): LSTM(256, 64, batch_first=True)
+    (reverse_rnn): LSTM(256, 64, batch_first=True)
+    (encoder_fc_out): Sequential(
+      (0): Linear(in_features=128, out_features=128, bias=True)
+      (1): ELU(alpha=1.0, inplace=True)
+      (2): Linear(in_features=128, out_features=128, bias=True)
+      (3): ELU(alpha=1.0, inplace=True)
+      (4): Linear(in_features=128, out_features=2, bias=True)
+    )
+    (prior_fc_out): Sequential(
+      (0): Linear(in_features=64, out_features=128, bias=True)
+      (1): ELU(alpha=1.0, inplace=True)
+      (2): Linear(in_features=128, out_features=128, bias=True)
+      (3): ELU(alpha=1.0, inplace=True)
+      (4): Linear(in_features=128, out_features=2, bias=True)
+    )
+  )
+  (decoder): DNRI_Decoder(
+    (msg_fc1): ModuleList(
+      (0-1): 2 x Linear(in_features=512, out_features=256, bias=True)
+    )
+    (msg_fc2): ModuleList(
+      (0-1): 2 x Linear(in_features=256, out_features=256, bias=True)
+    )
+    (hidden_r): Linear(in_features=256, out_features=256, bias=False)
+    (hidden_i): Linear(in_features=256, out_features=256, bias=False)
+    (hidden_h): Linear(in_features=256, out_features=256, bias=False)
+    (input_r): Linear(in_features=4, out_features=256, bias=True)
+    (input_i): Linear(in_features=4, out_features=256, bias=True)
+    (input_n): Linear(in_features=4, out_features=256, bias=True)
+    (out_fc1): Linear(in_features=256, out_features=256, bias=True)
+    (out_fc2): Linear(in_features=256, out_features=256, bias=True)
+    (out_fc3): Linear(in_features=256, out_features=4, bias=True)
+  )
+)
+LOADING BEST MODEL
+FORWARD PRED RESULTS:
+	1 STEP:   2.5316995788671193e-07
+	5 STEP:  2.6645280740922317e-05
+	9 STEP:  0.0002885582798626274

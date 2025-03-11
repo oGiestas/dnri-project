@@ -1,0 +1,5 @@
+Elapsed time for seed 1: 1087 seconds
+Elapsed time for seed 2: 1087 seconds
+Elapsed time for seed 3: 1089 seconds
+Elapsed time for seed 4: 1088 seconds
+Elapsed time for seed 5: 1090 seconds

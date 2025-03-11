@@ -1,0 +1,76 @@
+Using factor graph MLP encoder.
+ENCODER:  RefMLPEncoder(
+  (mlp1): RefNRIMLP(
+    (model): Sequential(
+      (0): Linear(in_features=160, out_features=256, bias=True)
+      (1): ELU(alpha=1.0, inplace=True)
+      (2): Dropout(p=0.0, inplace=False)
+      (3): Linear(in_features=256, out_features=256, bias=True)
+      (4): ELU(alpha=1.0, inplace=True)
+    )
+    (bn): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  )
+  (mlp2): RefNRIMLP(
+    (model): Sequential(
+      (0): Linear(in_features=512, out_features=256, bias=True)
+      (1): ELU(alpha=1.0, inplace=True)
+      (2): Dropout(p=0.0, inplace=False)
+      (3): Linear(in_features=256, out_features=256, bias=True)
+      (4): ELU(alpha=1.0, inplace=True)
+    )
+    (bn): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  )
+  (mlp3): RefNRIMLP(
+    (model): Sequential(
+      (0): Linear(in_features=256, out_features=256, bias=True)
+      (1): ELU(alpha=1.0, inplace=True)
+      (2): Dropout(p=0.0, inplace=False)
+      (3): Linear(in_features=256, out_features=256, bias=True)
+      (4): ELU(alpha=1.0, inplace=True)
+    )
+    (bn): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  )
+  (mlp4): RefNRIMLP(
+    (model): Sequential(
+      (0): Linear(in_features=768, out_features=256, bias=True)
+      (1): ELU(alpha=1.0, inplace=True)
+      (2): Dropout(p=0.0, inplace=False)
+      (3): Linear(in_features=256, out_features=256, bias=True)
+      (4): ELU(alpha=1.0, inplace=True)
+    )
+    (bn): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  )
+  (fc_out): Sequential(
+    (0): Linear(in_features=256, out_features=256, bias=True)
+    (1): ELU(alpha=1.0, inplace=True)
+    (2): Linear(in_features=256, out_features=256, bias=True)
+    (3): ELU(alpha=1.0, inplace=True)
+    (4): Linear(in_features=256, out_features=2, bias=True)
+  )
+)
+Using learned recurrent interaction net decoder.
+DECODER:  GraphRNNDecoder(
+  (msg_fc1): ModuleList(
+    (0-1): 2 x Linear(in_features=512, out_features=256, bias=True)
+  )
+  (msg_fc2): ModuleList(
+    (0-1): 2 x Linear(in_features=256, out_features=256, bias=True)
+  )
+  (hidden_r): Linear(in_features=256, out_features=256, bias=False)
+  (hidden_i): Linear(in_features=256, out_features=256, bias=False)
+  (hidden_h): Linear(in_features=256, out_features=256, bias=False)
+  (input_r): Linear(in_features=4, out_features=256, bias=True)
+  (input_i): Linear(in_features=4, out_features=256, bias=True)
+  (input_n): Linear(in_features=4, out_features=256, bias=True)
+  (out_fc1): Linear(in_features=256, out_features=256, bias=True)
+  (out_fc2): Linear(in_features=256, out_features=256, bias=True)
+  (out_fc3): Linear(in_features=256, out_features=4, bias=True)
+)
+USING UNIFORM PRIOR
+LOADING BEST MODEL
+/mnt/aiongpfs/users/rgiesta/bsps6/dnri/dnri/models/decoders.py:135: UserWarning: The torch.cuda.*DtypeTensor constructors are no longer recommended. It's best to use methods such as torch.tensor(data, dtype=*, device='cuda') to create tensors. (Triggered internally at ../torch/csrc/tensor/python_tensor.cpp:78.)
+  hidden = torch.cuda.FloatTensor(inputs.size(0), inputs.size(2), self.msg_out_shape).fill_(0.)
+FORWARD PRED RESULTS:
+	1 STEP:   4.667042230721563e-05
+	5 STEP:  0.0014172735391184688
+	9 STEP:  0.005462317727506161
